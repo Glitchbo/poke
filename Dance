@@ -1,0 +1,25 @@
+var dancer2;
+var dancer1;
+
+function do_something() {
+  setTintEachInline(sprites, '#ff0000');
+}
+
+whenSetup(function () {
+  setBackgroundEffectWithPalette("diamonds", "warm");
+  makeNewDanceSpriteGroup(20, "BEAR", "circle");
+  setDanceSpeed('dancer2', 4);
+  makeAnonymousDanceSprite("ALIEN", {x: 200, y: 200});
+  makeNewDanceSpriteGroup(10, "MOOSE", "circle");
+  makeNewDanceSprite("CAT", 'dancer2', {x: 200, y: 100});
+});
+
+atTimestamp(4, "measures", function () {
+  setBackgroundEffectWithPalette("rand", "electronic");
+  changeMoveEachLR(sprites, "rand", -1);
+  ifDanceIs('dancer1', MOVES.Dab, function () {
+    setPropRandom('dancer2', "tint");
+  }, function () {
+    setForegroundEffectExtended("rand");
+  });
+});
